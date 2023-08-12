@@ -1,10 +1,12 @@
+<?php include 'functions.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>My Portfolio</title>
-  <link rel="stylesheet" href="index.css">
-  <script type="text/javascript" src="index.js"></script>
+  <link rel="stylesheet" href="styles/index.css">
+  <script type="text/javascript" src="scripts/index.js"></script>
 
   <nav>
     <a class="nav" id="1" href="#home">Home</a>
@@ -23,17 +25,14 @@
 <body>
 
   <script>
-    // Replace with your authentication provider's login URL
-    const loginUrl = "YOUR_LOGIN_URL";
+    const loginUrl = "login.php";
 
-    // Get the login button element
     const loginButton = document.getElementById("loginButton");
 
-    // Add a click event listener to the login button
     loginButton.addEventListener("click", function() {
-        // Redirect the user to the login page
         window.location.href = loginUrl;
     });
+
 </script>
   <div class="section" id="home">
     <h1> My Uni Life</h1>
@@ -185,6 +184,21 @@
     <img src="photos/app.jpg" alt=" Graduation" style="width:700px;height:400px;">
   </div>
 
+  <div class="section" id="projects">
+    <h2>Projects</h2>
+
+    <?php
+    $projects = getProjects();
+
+    foreach ($projects as $project) {
+        echo "<div class='project'>";
+        echo "<h3>{$project['project_name']}</h3>";
+        echo "<p>{$project['description']}</p>";
+        echo "</div>";
+    }
+    ?>
+</div>
+
   <div class="section contact-section" id="contact">
     <div class="list">
       <h2>Contact info </h2>
@@ -195,19 +209,18 @@
         <li>Tel No-+94774502604</li>
       </ul>
     </div>
-    
 
-    <form action="#" method="POST">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-  
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-  
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" required></textarea>
-  
-      <input type="submit" value="Submit">
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        Name: <input type="text" name="name" value="<?php echo $name; ?>">
+        <span class="error"><?php echo $nameErr; ?></span>
+        <br><br>
+        Email: <input type="text" name="email" value="<?php echo $email; ?>">
+        <span class="error"><?php echo $emailErr; ?></span>
+        <br><br>
+        Message: <textarea name="message"><?php echo $message; ?></textarea>
+        <span class="error"><?php echo $messageErr; ?></span>
+        <br><br>
+        <input type="submit" name="submit" value="Submit">
     </form>
   </div>
 

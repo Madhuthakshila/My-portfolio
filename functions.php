@@ -27,6 +27,15 @@ function connectDatabase() {
     return $conn;
 }
 
+function login($username, $password) {
+    if ($username === "admin" && $password === "admin") {
+        $_SESSION["user"] = $username;
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function insertProject($data) {
     $conn = connectDatabase();
 
@@ -42,9 +51,22 @@ function insertProject($data) {
 function getProjects() {
     $conn = connectDatabase();
     
-t
+    $projects = array();
+    
+    $result = $conn->query("SELECT * FROM projects");
+    
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $projects[] = $row;
+        }
+        $result->free();
+    } else {
+        echo "Error fetching projects: " . $conn->error;
+    }
     
     $conn->close();
+
+    return $projects;
 }
 
 function updateProject($id, $data) {
@@ -74,7 +96,6 @@ $name = $email = $message = "";
 $nameErr = $emailErr = $messageErr = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate and sanitize name
     if (empty($_POST["name"])) {
         $nameErr = "Name is required";
     } else {
@@ -84,7 +105,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-    // Validate and sanitize email
     if (empty($_POST["email"])) {
         $emailErr = "Email is required";
     } else {
@@ -94,12 +114,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-    // Sanitize message
     if (empty($_POST["message"])) {
         $messageErr = "Message is required";
     } else {
         $message = sanitizeInput($_POST["message"]);
-        // Additional validation or checks for the message can be added here
     }
 }
 
@@ -111,7 +129,6 @@ function sanitizeInput($input) {
 }
 
 ?>
-
   
 
 <!DOCTYPE html>
