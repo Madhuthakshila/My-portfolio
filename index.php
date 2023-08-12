@@ -16,7 +16,7 @@
     <a class="nav" id="5" href="#goals">Goals</a>
     <a class="nav" id="6" href="#projects">Projects</a>
     <a class="nav" id="7" href="#contact">contact</a>
-    <li><a href="#" id="loginButton">Log In</a></li>
+    <a class ="nav login" href="#" id="loginButton">Log In</a>
   </nav>
   
 
