@@ -131,24 +131,4 @@ function sanitizeInput($input) {
 ?>
   
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Contact Form</title>
-</head>
-<body>
-    <h2>Contact Us</h2>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        Name: <input type="text" name="name" value="<?php echo $name; ?>">
-        <span class="error"><?php echo $nameErr; ?></span>
-        <br><br>
-        Email: <input type="text" name="email" value="<?php echo $email; ?>">
-        <span class="error"><?php echo $emailErr; ?></span>
-        <br><br>
-        Message: <textarea name="message"><?php echo $message; ?></textarea>
-        <span class="error"><?php echo $messageErr; ?></span>
-        <br><br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
-</body>
-</html>
+

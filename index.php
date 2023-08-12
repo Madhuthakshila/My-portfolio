@@ -194,6 +194,9 @@
         echo "<div class='project'>";
         echo "<h3>{$project['ProjectName']}</h3>";
         echo "<p>{$project['Description']}</p>";
+    
+     echo" <img src=\"{$project['Image']}\" alt=\"Image\" class=\"myphoto\" style=\"width:300px;height:300px;\">";
+    
         echo "</div>";
     }
     ?>
@@ -220,12 +223,15 @@
         Message: <textarea name="message"><?php echo $message; ?></textarea>
         <span class="error"><?php echo $messageErr; ?></span>
         <br><br>
+      
+
         <input type="submit" name="submit" value="Submit">
     </form>
   </div>
 
   <div class="footer">
     <p> Follow me on </p>
+    <br>
     <img src="photos/socialmedia.jpg" width="500 " height="200" alt="media">
     <div class="end -text">
       <p> Copyright @2023 All rights reserved | Thakshila Madhuwanthi </p>
