@@ -53,7 +53,7 @@ function getProjects() {
     
     $projects = array();
     
-    $result = $conn->query("SELECT * FROM projects");
+    $result = $conn->query("SELECT * FROM project");
     
     if ($result) {
         while ($row = $result->fetch_assoc()) {

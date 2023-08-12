@@ -192,8 +192,8 @@
 
     foreach ($projects as $project) {
         echo "<div class='project'>";
-        echo "<h3>{$project['project_name']}</h3>";
-        echo "<p>{$project['description']}</p>";
+        echo "<h3>{$project['ProjectName']}</h3>";
+        echo "<p>{$project['Description']}</p>";
         echo "</div>";
     }
     ?>
